@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress 
+metadata:
+  name: webpage-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/issuer: letsencrypt
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - mytestpages.ca
+    secretName: cloudflare-api-key-secret
+  rules:
+  - host: mytestpages.ca
+    http:
+      paths:
+      - path: /aboutus
+        pathType: Prefix
+        backend:
+          service:
+            name: aboutus
+            port: 
+              number: 80
+      - path: /contact
+        pathType: Prefix
+        backend:
+          service:
+            name: contactus
+            port: 
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mainpage
+            port: 
+              number: 80

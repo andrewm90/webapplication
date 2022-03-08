@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aboutus
+  labels:
+    app: aboutus
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: aboutus
+  template:
+    metadata:
+      labels:
+        app: aboutus
+    spec:
+      containers:
+      - name: nginx
+        image: andrewm90/aboutus
+        ports:
+        - containerPort: 80
+

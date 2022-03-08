@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contactus
+  labels:
+    app: contactus
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: contactus
+  template:
+    metadata:
+      labels:
+        app: contactus
+    spec:
+      containers:
+      - name: nginx
+        image: andrewm90/contactus
+        ports:
+        - containerPort: 80

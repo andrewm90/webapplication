@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mainpage
+  labels:
+    app: mainpage
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mainpage
+  template:
+    metadata:
+      labels:
+        app: mainpage
+    spec:
+      containers:
+      - name: nginx
+        image: andrewm90/mainpage
+        ports:
+        - containerPort: 80
